@@ -1,0 +1,30 @@
+{
+  "name": "mediahostingjs",
+  "version": "1.0.0",
+  "description": "best place to find videos and their community",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/palejelly/youtubeClone.git"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js"
+  },
+  "author": "Junho Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/palejelly/youtubeClone/issues"
+  },
+  "homepage": "https://github.com/palejelly/youtubeClone#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "nodemon": "^2.0.20"
+  }
+}
