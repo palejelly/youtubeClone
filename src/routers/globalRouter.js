@@ -1,8 +1,8 @@
 import express from "express";
-import { trending } from "../controllers/globalController";
+import {home} from "../controllers/homeController";
 
 const globalRouter = express.Router();
 
-globalRouter.get("/",trending);
+globalRouter.get("/",home);
 
 export default globalRouter;
