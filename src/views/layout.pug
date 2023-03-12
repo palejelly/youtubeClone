@@ -1,11 +1,33 @@
 html(DOCTYPE="html")
     head 
         link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
-        title #{pageTitle} | climbingTube
+        link(rel="stylesheet" href="/static/css/styles.css")
+        title #{pageTitle} | #{locals.siteTitle}
     body 
         header
-            h1 this is layout
+            h1=pageTitle
+            nav 
+                ul 
+                    li 
+                        a(href="/") Home
+                    li 
+                        a(href="/search") Search
+                    if loggedIn 
+                        li
+                            a(href="/logout") Log Out
+                        li 
+                            a(href="/my-profile") #{loggedInUser.name}'s Profile
+                    else
+                        li 
+                            a(href="/join") Join
+                        li 
+                            a(href="/login") Login
+                    li 
+                        a(href="/videos/upload") Upload Video
 
-        block customContent
 
-    include partials/footer.pug
+        main
+            block customContent
+        include partials/footer.pug
+    block scripts 
+

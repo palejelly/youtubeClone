@@ -1,1 +1,5 @@
-export const home = (req,res) => res.render("home",{pageTitle : "homepage"});
+
+
+export const home = (req,res) => {
+    res.render("home",{pageTitle : "homepage"});
+};

@@ -1,0 +1,6 @@
+extends layout.pug 
+
+block customContent 
+    form(method="GET")
+        input(placeholder = "Seearch by title", type="text",name="keyword")
+        input(type="submit", value="search now")
