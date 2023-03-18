@@ -29,7 +29,11 @@ app.get("/add-one",(req,res,next)=>{
     return res.send(`${req.session.id}\n ${req.session.potato}`);
 })
 
-app.use("/",rootRouter);
+// app.use("/",rootRouter);
+app.get('/', (req, res) => {
+    res.status(200).send('Hello, world!').end();
+});
+  
 app.use("/uploads",express.static("uploads"));
 app.use("/static",express.static("assets"));
 app.use("/videos",videoRouter);
