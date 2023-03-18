@@ -1,4 +1,5 @@
 import multer from "multer";
+import MulterGoogleCloudStorage from "multer-cloud-storage";
 
 
 export const localsMiddleware  = (req,res,next)=>{
@@ -11,7 +12,27 @@ export const localsMiddleware  = (req,res,next)=>{
 
     next();
 }
+// export const avatarUpload = multer({
+// dest:"uploads/avatars/",
+// limits:{fileSize:3000000,}
+// });
 
-export const avatarUpload = multer({dest:"uploads/avatars/",limits:{fileSize:3000000,}})
+// export const videoUpload = multer({
+//     dest:"uploads/videos/",
+//     limits:{fileSize:10000000,}
 
-export const videoUpload = multer({dest:"uploads/videos/",limits:{fileSize:10000000,}});
+// });
+
+export const avatarUpload = multer({
+    storage: new MulterGoogleCloudStorage(
+        {destination:"uploads/avatars/"}
+    ),
+    // limits:{fileSize:3000000,}
+})
+
+export const videoUpload = multer({
+    storage: new MulterGoogleCloudStorage({
+        destination:"uploads/videos/"
+    }),
+    // limits:{fileSize:10000000,}
+});

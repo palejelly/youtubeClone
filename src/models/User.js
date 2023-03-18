@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import { boolean } from "webidl-conversions";
 
 const userSchema = new mongoose.Schema({
     email: {type: String, required: true},
+    socialOnly:{type: Boolean, default:false},
     username: {type: String, required:true, unique: true },
-    password: {type:String, required: true},
+    password: {type:String},
     name: {type: String, required: true},
     avatarUrl : {type: String},
     location: String, 

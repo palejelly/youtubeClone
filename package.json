@@ -8,8 +8,12 @@
     "url": "git+https://github.com/palejelly/youtubeClone.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js",
-    "assets": "webpack --config webpack.config.js"
+    "start": "node build/init.js",
+    "build": "npm run build:server&& npm run build:assets",
+    "build:server": "babel src -d build",
+    "build:assets": "webpack --mode=production",
+    "dev:server": "nodemon --exec babel-node src/init.js",
+    "dev:assets": "webpack --config webpack.config.js --mode=development -w"
   },
   "author": "Junho Lee",
   "license": "ISC",
@@ -26,11 +30,14 @@
     "mongoose": "^6.10.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "multer-cloud-storage": "^3.0.0",
     "node-fetch": "^2.6.1",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "regenerator-runtime": "^0.13.11"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "babel-loader": "^9.1.2",

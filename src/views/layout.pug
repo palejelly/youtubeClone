@@ -1,33 +1,14 @@
 html(DOCTYPE="html")
     head 
-        link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
         link(rel="stylesheet" href="/static/css/styles.css")
         title #{pageTitle} | #{locals.siteTitle}
     body 
-        header
-            h1=pageTitle
-            nav 
-                ul 
-                    li 
-                        a(href="/") Home
-                    li 
-                        a(href="/search") Search
-                    if loggedIn 
-                        li
-                            a(href="/logout") Log Out
-                        li 
-                            a(href="/my-profile") #{loggedInUser.name}'s Profile
-                    else
-                        li 
-                            a(href="/join") Join
-                        li 
-                            a(href="/login") Login
-                    li 
-                        a(href="/videos/upload") Upload Video
-
+        include partials/header
 
         main
             block customContent
         include partials/footer.pug
+    script(src="/static/js/main.js")
     block scripts 
 
