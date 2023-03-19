@@ -30,7 +30,6 @@ app.get("/add-one",(req,res,next)=>{
 })
 
 app.use("/",rootRouter);
-  
 app.use("/uploads",express.static("uploads"));
 app.use("/static",express.static("assets"));
 app.use("/videos",videoRouter);
