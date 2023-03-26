@@ -49,7 +49,9 @@ export const watch = async (req,res) => {
     const {id} = req.params;
     const video = await Video.findById(id).populate("owner");
     
-    // need to change this. 
+    // TODO: need to change this.
+    // TODO 1: use ffmpeg to make files to mp4. otherwise, it won't work. 
+    
     video.fileUrl = url;
 
     if(video === null){
