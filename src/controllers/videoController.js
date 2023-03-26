@@ -51,7 +51,7 @@ export const watch = async (req,res) => {
     
     // TODO: need to change this.
     // TODO 1: use ffmpeg to make files to mp4. otherwise, it won't work. 
-    
+    // todo 2: auth problem. error fetching application [apps/climbing-social-220317]. Please make sure that you have permission to view applications on the project and that 663145008847@cloudbuild.gserviceaccount.com has the App Engine Deployer (roles/appengine.deployer) role.
     video.fileUrl = url;
 
     if(video === null){
