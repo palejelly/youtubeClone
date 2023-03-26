@@ -6,7 +6,7 @@ import { avatarUpload } from "../middlewares";
 const userRouter = express.Router();
 
 userRouter.get("/", seeUsers);
-userRouter.get("/:id([0-9])", seeUser);
+userRouter.get("/:id([0-9a-f]{24})", seeUser);
 
 userRouter.route("/edit").get(getEditUser).post(avatarUpload.single("avatar"), postEdit);
 userRouter.get("/github/start", startGithubLogin);

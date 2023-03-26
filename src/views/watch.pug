@@ -1,8 +1,8 @@
 extends layout.pug 
 
 block customContent 
-    div(class="showing")#videoContainer
-        video(src="/" + video.fileUrl)
+    div(class="showing", data-id=video._id)#videoContainer
+        video(src=video.fileUrl, crossorigin="anonymous")
         div#videoControls.videoControls
             span#play.videoControls__playBtn 
                 i.fas.fa-play
@@ -20,12 +20,24 @@ block customContent
                 span#fullScreen
                     i.fas.fa-expand
 
-    //- div
-    //-     p=video.description
-    //-     small=video.createdAt
-    //- a(href=`${video.id}/edit`) Edit Video &rarr;
-    //- br
-    //- a(href=`${video.id}/delete`) Delete Video &rarr;
+    div
+        p=video.description
+        small=video.createdAt
+    div 
+        small Uploaded by 
+            a(href=`/users/${video.owner._id}`) #{video.owner.name}
+        
+    if String(video.owner._id) === String(loggedInUser._id)
+        a(href=`${video.id}/edit`) Edit Video &rarr;
+        br
+        a(href=`${video.id}/delete`) Delete Video &rarr;
+
+    if loggedIn
+        div.video__comments 
+            form.video__commentform#commentForm
+                textarea(cols="30",rows="10", placeholder="Write a nice comment...")
+                button Add Comment
 
 block scripts
     script(src="/static/js/videoPlayer.js") 
+    script(src="/static/js/commentSection.js") 

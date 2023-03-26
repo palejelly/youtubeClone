@@ -5,6 +5,7 @@ import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 import rootRouter from "./routers/rootRouter";
 import {localsMiddleware} from "./middlewares";
+import apiRouter from "./routers/apiRouter";
 
 
 const app = express();
@@ -22,6 +23,13 @@ app.use(session({
     })
 );
 
+app.use((req, res, next) => {
+    res.header("Cross-Origin-Embedder-Policy", "require-corp");
+    res.header("Cross-Origin-Opener-Policy", "same-origin");
+    next();
+    });
+    
+
 app.use(localsMiddleware);
 
 app.get("/add-one",(req,res,next)=>{
@@ -34,5 +42,6 @@ app.use("/uploads",express.static("uploads"));
 app.use("/static",express.static("assets"));
 app.use("/videos",videoRouter);
 app.use("/users",userRouter);
+app.use("/api",apiRouter);
 
 export default app;

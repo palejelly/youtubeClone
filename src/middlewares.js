@@ -32,7 +32,7 @@ export const avatarUpload = multer({
 
 export const videoUpload = multer({
     storage: new MulterGoogleCloudStorage({
-        destination:"uploads/videos/"
+        destination:"uploads/videos/",
     }),
     // limits:{fileSize:10000000,}
 });

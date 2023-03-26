@@ -1,0 +1,9 @@
+.video-grid{
+    display:grid;
+    gap:50px;
+    width:100%;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+// maybe writing a media query is better.

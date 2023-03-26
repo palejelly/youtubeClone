@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/palejelly/youtubeClone#readme",
   "dependencies": {
+    "@ffmpeg/core": "^0.11.0",
+    "@ffmpeg/ffmpeg": "^0.11.6",
+    "@google-cloud/storage": "^6.9.4",
     "bcrypt": "^5.1.0",
     "connect-mongo": "^4.6.0",
     "dotenv": "^16.0.3",
