@@ -26,6 +26,7 @@ export const avatarUpload = multer({
     storage: new MulterGoogleCloudStorage(
         {destination:"uploads/avatars/",
         bucket:"climbing_bucket",
+        projectId:"climbing-social-220317",
 }
     ),
     // limits:{fileSize:3000000,}
@@ -35,6 +36,7 @@ export const videoUpload = multer({
     storage: new MulterGoogleCloudStorage({
         destination:"uploads/videos/",
         bucket:"climbing_bucket",
+        projectId:"climbing-social-220317",
     }),
     // limits:{fileSize:10000000,}
 });
