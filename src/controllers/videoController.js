@@ -21,7 +21,7 @@ async function generateSignedUrl(){
 
     console.log(`The signed url for ${fileName} is ${url}.`);
 
-    // generateSignedUrl().catch(console.error);
+    // generateSignedUrl().catch(console.error);;;
     return url;
 }
 
