@@ -2,7 +2,7 @@
   "name": "mediahostingjs",
   "version": "1.0.0",
   "description": "best place to find videos and their community",
-  "main": "index.js",
+  "main": "build/init.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/palejelly/youtubeClone.git"
