@@ -5,6 +5,7 @@ import {Storage} from "@google-cloud/storage";
 
 const storage = new Storage({
     projectId: process.env.GCLOUD_PROJECT,
+    storage: process.env.GCS_BUCKET,
 });
 // https://stackoverflow.com/questions/72605933/google-cloud-storage-file-stream-into-fsreadstream-without-saving-to-file
 async function generateSignedUrl(){
