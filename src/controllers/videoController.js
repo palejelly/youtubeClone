@@ -48,7 +48,7 @@ export const watch = async (req,res) => {
 
     const {id} = req.params;
     const video = await Video.findById(id).populate("owner");
-    
+
     // TODO: need to change this.
     // TODO 1: use ffmpeg to make files to mp4. otherwise, it won't work. 
     // todo 2: auth problem. errordd fetching application [apps/climbing-social-220317]. Please make sure that you have permission to view applications on the project and that 663145008847@cloudbuild.gserviceaccount.com has the App Engine Deployer (roles/appengine.deployer) role.
