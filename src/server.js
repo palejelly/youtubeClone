@@ -40,8 +40,8 @@ app.use("/videos",videoRouter);
 app.use("/users",userRouter);
 app.use("/api",apiRouter);
 
-app.get(/^(?!.*_ah).*$/,(req,res,next)=>{
-});
+// app.get(/^(?!.*_ah).*$/,(req,res,next)=>{
+// });
 
 
 export default app;
