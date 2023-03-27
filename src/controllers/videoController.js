@@ -34,7 +34,7 @@ export const trend = async (req,res) => {
     // });
     // Method 2: promise
     try{
-        const videos = await Video.find({}).sort({createdAt:"asc"}).populate("owner");
+        const videos = await Video.find({}).populate("owner").sort({createdAt:"asc"});
 
         return res.render("home",{pageTitle:"Home", videos});
     } catch(error){
