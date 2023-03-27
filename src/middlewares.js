@@ -24,7 +24,9 @@ export const localsMiddleware  = (req,res,next)=>{
 
 export const avatarUpload = multer({
     storage: new MulterGoogleCloudStorage(
-        {destination:"uploads/avatars/"}
+        {destination:"uploads/avatars/",
+        bucket: process.env.GCS_BUCKET,
+}
     ),
     // limits:{fileSize:3000000,}
 })
@@ -32,6 +34,7 @@ export const avatarUpload = multer({
 export const videoUpload = multer({
     storage: new MulterGoogleCloudStorage({
         destination:"uploads/videos/",
+        bucket: process.env.GCS_BUCKET,
     }),
     // limits:{fileSize:10000000,}
 });
