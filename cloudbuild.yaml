@@ -12,15 +12,15 @@ steps:
   entrypoint: npm
   args: ["run", "create-env"]
   env:
-    - 'COOKIE_SECRET=${_COOKIE_SECRET}',
-    - 'DB_URL=${_DB_URL}',
-    - 'GCLOUD_PROJECT=${_GCLOUD_PROJECT}',
-    - 'GCS_BUCKET=${_GCS_BUCKET}',
-    - 'GCS_KEYFILE=${_GCS_KEYFILE}',
-    - 'GH_CLIENT=${_GH_CLIENT}',
-    - 'GH_SECRET=${_GH_SECRET}',
-    - 'GOOGLE_APPLICATION_CREDENTIALS=${_GOOGLE_APPLICATION_CREDENTIALS}',
-    - 'PORT=${_PORT}',
+    - 'COOKIE_SECRET=${_COOKIE_SECRET}'
+    - 'DB_URL=${_DB_URL}'
+    - 'GCLOUD_PROJECT=${_GCLOUD_PROJECT}'
+    - 'GCS_BUCKET=${_GCS_BUCKET}'
+    - 'GCS_KEYFILE=${_GCS_KEYFILE}'
+    - 'GH_CLIENT=${_GH_CLIENT}'
+    - 'GH_SECRET=${_GH_SECRET}'
+    - 'GOOGLE_APPLICATION_CREDENTIALS=${_GOOGLE_APPLICATION_CREDENTIALS}'
+    - 'PORT=${_PORT}'
 # Run custom commands
 - name: node
   entrypoint: npm
