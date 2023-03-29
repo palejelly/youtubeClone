@@ -6,8 +6,9 @@ import {Storage} from "@google-cloud/storage";
 const storage = new Storage({
     projectId: process.env.GCLOUD_PROJECT,
     bucket: process.env.GCS_BUCKET,
-
 });
+// https://cloud.google.com/appengine/docs/flexible/using-cloud-storage?tab=node.js
+// multer and cloud storage related solution. 
 // https://stackoverflow.com/questions/72605933/google-cloud-storage-file-stream-into-fsreadstream-without-saving-to-file
 async function generateSignedUrl(){
     const fileName = "uploads/videos/MyRecording.webm";
@@ -103,7 +104,10 @@ export const getUpload = (req,res) =>{
 
 export const postUpload = async (req,res)=>{
     const {user:{_id}} = req.session;
+    // since we used multer, the fileurl is in req.files
     const {video, thumb} = req.files;
+    console.log(video[0]);
+    console.log(thumb[0]);
     const {title,description, hashtags} = req.body;
     try{
         const newVideo = await Video.create({
