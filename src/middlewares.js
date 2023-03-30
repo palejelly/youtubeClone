@@ -69,39 +69,67 @@ export const videoUpload = (req,res,next) =>{
       // Create a new blob in the bucket and upload the file data.
     const {video, thumb} = req.files;
     const thumbBlob = videoBucket.file("uploads/thumb/"+thumb[0].originalname);
-    const thumbBlobStream = thumbBlob.createWriteStream();
+
     const videoBlob = videoBucket.file("uploads/videos/"+video[0].originalname);
-    const blobStream = videoBlob.createWriteStream();
+
     // https://stackoverflow.com/questions/54948585/sending-multiple-files-to-google-bucket-with-multer-why-are-my-files-empty
+    // https://stackoverflow.com/questions/62666032/how-to-createwritestream-to-gcs
+    // good example to wait for all files to be uploaded. 
     
-    promises.push(thumbBlobStream);
-    promises.push(blobStream);
-    thumbBlobStream.on('finish',()=>{
-        const publicUrl =`https://storage.googleapis.com/${videoBucket.name}/${thumbBlob.name}`;
-        thumb[0].path = publicUrl;
-    });
+    const thumbPromise = new Promise((resolve,reject)=>{
+        console.log("I'm sending thumePromise");
+        const thumbBlobStream = thumbBlob.createWriteStream();
 
-    blobStream.on('error', err => {
-        next(err);
-      });
-    
-    blobStream.on('finish', () => {
+        thumbBlobStream.on('error', err => {
+
+            reject(`Unable to upload image, something went wrong`);
+          });
+        thumbBlobStream.on('finish', () => {
         // The public URL can be used to directly access the file via HTTP.
-        const publicUrl = `https://storage.googleapis.com/${videoBucket.name}/${videoBlob.name}`;
+            const publicUrl = `https://storage.googleapis.com/${videoBucket.name}/${thumbBlob.name}`;
 
-        // res.status(200).send(publicUrl);
-        // we may need this url later, let's add this in file. 
-        video[0].path = publicUrl;
+            // res.status(200).send(publicUrl);
+            // we may need this url later, let's add this in file. 
+            thumb[0].path = publicUrl;
+            resolve(publicUrl);
 
         // since this is middleware, we need to send next();
-        });
-    Promise.all(promises).then(() => {
-        console.log("all promise resolved");
+        });    
         thumbBlobStream.end(thumb[0].buffer);
 
+
+    });
+    promises.push(thumbPromise);
+
+    const videoPromise = new Promise((resolve,reject)=>{
+        const blobStream = videoBlob.createWriteStream();
+
+        blobStream.on('error', err => {
+
+            reject(`Unable to upload video, something went wrong`);
+        });
+        blobStream.on('finish', () => {
+
+            // The public URL can be used to directly access the file via HTTP.
+            const publicUrl = `https://storage.googleapis.com/${videoBucket.name}/${videoBlob.name}`;
+    
+            // res.status(200).send(publicUrl);
+            // we may need this url later, let's add this in file. 
+            video[0].path = publicUrl;
+            resolve(publicUrl);
+            // since this is middleware, we need to send next();
+        });    
         blobStream.end(video[0].buffer);
+
+    });
+
+    promises.push(videoPromise);
+
+    return Promise.all(promises).then(() => {
+        console.log("all promise resolved");
     
         next();
+        return;
     });
 
 

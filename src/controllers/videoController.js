@@ -55,7 +55,6 @@ export const watch = async (req,res) => {
     // TODO: need to change this.
     // TODO 1: use ffmpeg to make files to mp4. otherwise, it won't work. 
     // todo 2: auth problem. errordd fetching application [apps/climbing-social-220317]. Please make sure that you have permission to view applications on the project and that 663145008847@cloudbuild.gserviceaccount.com has the App Engine Deployer (roles/appengine.deployer) role.
-    video.fileUrl = url;
 
     if(video === null){
         return res.status(404).render("404",{pageTitle:"Video not found"});
@@ -106,8 +105,6 @@ export const postUpload = async (req,res)=>{
     const {user:{_id}} = req.session;
     // since we used multer, the fileurl is in req.files
     const {video, thumb} = req.files;
-    console.log(video[0]);
-    console.log(thumb[0]);
     const {title,description, hashtags} = req.body;
     try{
         const newVideo = await Video.create({
