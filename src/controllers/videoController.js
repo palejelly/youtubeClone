@@ -46,15 +46,13 @@ export const trend = async (req,res) => {
     }
 };
 export const watch = async (req,res) => {
-    // testing 
-    const url = await generateSignedUrl();
-
     const {id} = req.params;
     const video = await Video.findById(id).populate("owner");
 
     // TODO: need to change this.
     // TODO 1: use ffmpeg to make files to mp4. otherwise, it won't work. 
-    // todo 2: auth problem. errordd fetching application [apps/climbing-social-220317]. Please make sure that you have permission to view applications on the project and that 663145008847@cloudbuild.gserviceaccount.com has the App Engine Deployer (roles/appengine.deployer) role.
+    // todo 2: auth problem. error fetching application 
+    // [apps/climbing-social-220317]. Please make sure that you have permission to view applications on the project and that 663145008847@cloudbuild.gserviceaccount.com has the App Engine Deployer (roles/appengine.deployer) role.
 
     if(video === null){
         return res.status(404).render("404",{pageTitle:"Video not found"});
