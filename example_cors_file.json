@@ -1,6 +1,6 @@
 [
     {
-      "origin": ["http://localhost:4000"],
+      "origin": ["http://localhost:4000","https://climbing-social-220317.uc.r.appspot.com"],
       "method": ["GET"],
       "responseHeader": ["Content-Type"],
       "maxAgeSeconds": 3600
