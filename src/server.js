@@ -25,15 +25,13 @@ app.use(session({
 );
 
 app.use((req, res, next) => {
-    res.header("Cross-Origin-Embedder-Policy", false);
+    res.header("Cross-Origin-Embedder-Policy", "require-corp");
     res.header("Cross-Origin-Opener-Policy", "same-origin");
-    res.header("cross-origin-resource-policy", false);
+    res.header("cross-Origin-Resource-policy", false);
     next();
-    });
-    
+});      
 
 app.use(localsMiddleware);
-
 app.use("/",rootRouter);
 app.use("/uploads",express.static("uploads"));
 app.use("/static",express.static("assets"));

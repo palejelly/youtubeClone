@@ -1,4 +1,5 @@
-import {createFFmpeg, fetchFile} from "@ffmpeg/ffmpeg"
+import {createFFmpeg, fetchFile} from "@ffmpeg/ffmpeg";
+
 const actionBtn = document.getElementById("actionBtn");
 const video = document.getElementById("preview");
 
@@ -22,7 +23,7 @@ const downloadFile = (fileUrl, fileName) =>{
 }
 
 const handleDownload = async () => {
-    actionBtn.removeEventListener("click",handleDownload);
+    actionBtn.removeEventListener("click", handleDownload);
 
     actionBtn.innerText = "Transcoding...";
 
@@ -31,10 +32,10 @@ const handleDownload = async () => {
     const ffmpeg = createFFmpeg({log:true});
     await ffmpeg.load();
 
-    ffmpeg.FS("writeFile", files.input,await fetchFile(videoFile));
+    ffmpeg.FS("writeFile", files.input, await fetchFile(videoFile));
     await ffmpeg.run("-i",files.input,"-r","60",files.output);
 
-    await ffmpeg.run("-i", files.input,"-ss", "00:00:01","-frames:v","1",files.thumb);
+    await ffmpeg.run("-i", files.input,"-ss", "00:00:01","-frames:v","1", files.thumb);
     
     const thumbFile = ffmpeg.FS("readFile",files.thumb);
 
@@ -59,7 +60,6 @@ const handleDownload = async () => {
     actionBtn.disabled = false;
     actionBtn.innerText = "Record again";
     actionBtn.addEventListener("click",handleStart);
-
 
 }
 

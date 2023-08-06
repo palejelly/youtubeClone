@@ -8,6 +8,7 @@ module.exports = {
         main: BASE_JS+"main.js",
         videoPlayer: BASE_JS+"videoPlayer.js",
         recorder: BASE_JS+"recorder.js",
+        uploader: BASE_JS+"uploader.js",
         commentSection: BASE_JS+"commentSection.js"
     },
     plugins: [new MiniCssExtractPlugin({filename:"css/styles.css"})],
@@ -15,7 +16,6 @@ module.exports = {
         filename: "js/[name].js",
         path: path.resolve(__dirname,"assets"),
     },
-
     module: {
         rules:[
             {

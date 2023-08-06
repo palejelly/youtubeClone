@@ -104,6 +104,8 @@ export const postUpload = async (req,res)=>{
     // since we used multer, the fileurl is in req.files
     const {video, thumb} = req.files;
     const {title,description, hashtags} = req.body;
+
+    console.log(thumb)
     try{
         const newVideo = await Video.create({
             title: title,
